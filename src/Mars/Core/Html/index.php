@@ -12,7 +12,10 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <script src="statics/js/core.js"></script>
+
+    <script src="statics/js/controllers/main.js"></script>
+    <script src="statics/js/services/mars.js"></script>
+    <script src="statics/js/app.js"></script>
 
 </head>
 
@@ -33,7 +36,7 @@
             <span ng-switch-when=""></span>
             <span ng-switch-default>
                 <h4>Planets in {{clicked_system}} <span class="label label-info">{{ planets.length }}</span></h4>
-                <div ng-repeat="planet in planets">
+                <div ng-repeat="planet in planets" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                     <div>{{planet}}</div>
                 </div>
             </span>
