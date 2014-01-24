@@ -47,30 +47,59 @@ class PlanetsController extends Controller
         parent::__destruct();
     }
 
-    /**
-     * Default method.
-     *
-     * @return void
-     */
-    public function index()
+    public function systems()
     {
-        $this->set_result(HttpCode::OK);
-
-        $planets = [
-            'Mercury',
-            'Venus',
-            'Earth',
-            'Mars',
-            'Ceres',
-            'Jupiter',
-            'Saturn',
-            'Uranus',
-            'Neptune'
+        $systems = [
+            ['name' => 'Solar', 'img' => 'http://upload.wikimedia.org/wikipedia/commons/a/a9/Planets2013.jpg'],
+            ['name' => 'Gliese 581', 'img' => 'http://upload.wikimedia.org/wikipedia/commons/c/cd/SunGliese581.png']
         ];
+
+        $this->response->add_response_data('systems', $systems);
+
+        $this->response->view = 'jsonview';
+
+        $this->set_result(HttpCode::OK);
+    }
+
+    public function planets($system)
+    {
+        $this->response->view = 'jsonview';
+
+        $system = strtolower($system);
+
+        $planets = [];
+
+        switch($system)
+        {
+            case 'solar':
+                $planets = [
+                    'Mercury',
+                    'Venus',
+                    'Earth',
+                    'Mars',
+                    'Ceres',
+                    'Jupiter',
+                    'Saturn',
+                    'Uranus',
+                    'Neptune'
+                ];
+                break;
+            case 'gliese 581':
+                $planets = [
+                    'Gliese 581 b',
+                    'Gliese 581 c',
+                    'Gliese 581 d',
+                    'Gliese 581 e',
+                    'Gliese 581 f',
+                    'Gliese 581 g'
+                ];
+                break;
+            default:
+        }
 
         $this->response->add_response_data('planets', $planets);
 
-        $this->response->view = 'jsonview';
+        $this->set_result(HttpCode::OK);
     }
 
 }

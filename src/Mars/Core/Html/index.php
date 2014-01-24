@@ -17,8 +17,28 @@
 </head>
 
 <body ng-controller="mainController">
-    <ol>
-        <li ng-repeat="planet in planets">{{planet}}</li>
-    </ol>
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            <h1>Planetary systems</h1>
+        </div>
+
+        <div class="row">
+            <div ng-repeat="system in systems">
+                <img ng-src="{{system.img}}" ng-click="getPlanets(system.name)" style="width: 140px; height:140px; margin-bottom: 5px;" class="img-circle" title="{{system.name}}">
+            </div>
+        </div>
+
+        <div class="row" ng-switch on="clicked_system">
+            <span ng-switch-when=""></span>
+            <span ng-switch-default>
+                <h4>Planets in {{clicked_system}} <span class="label label-info">{{ planets.length }}</span></h4>
+                <div ng-repeat="planet in planets">
+                    <div>{{planet}}</div>
+                </div>
+            </span>
+        <div>
+
+    </div>
 </body>
 </html>
