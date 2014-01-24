@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit    bootstrap="test.bootstrap.inc.php"
+            backupGlobals="false"
+            backupStaticAttributes="false"
+            syntaxCheck="false"
+            forceCoversAnnotation="true"
+            mapTestClassNameToCoveredClassName="true"
+            colors="true"
+            verbose="true">
+    <php>
+        <ini name="zend.enable_gc" value="0" />
+    </php>
+    <testsuites>
+        <testsuite name="Core">
+            <file>src/Mars/Core/Tests/CoreViewBaseTest.php</file>
+        </testsuite>
+        <testsuite name="Home">
+            <file>src/Mars/Home/Tests/HomeControllerBaseTest.php</file>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>../src/Mars/</directory>
+            <exclude>
+                <directory>../src/Mars/Home/Tests/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <logging>
+        <log    type="coverage-html"
+                target="../build/coverage"
+                title="Mars"
+                charset="UTF-8"
+                yui="true"
+                highlight="true"
+                lowUpperBound="35"
+                highLowerBound="70"/>
+        <log    type="coverage-clover"
+                target="../build/logs/clover.xml"/>
+        <log    type="junit"
+                target="../build/logs/junit.xml"
+                logIncompleteSkipped="false"/>
+    </logging>
+</phpunit>
